@@ -27,7 +27,8 @@ src/main/java/com/juniverse/broker/
 ├── repository/
 │   └── ProcessedMessageRepository.java
 ├── service/
-│   └── MessageDeduplicationService.java  # Logica de idempotencia
+│   ├── MessageDeduplicationService.java          # Contrato de la idempotencia
+│   └── DatabaseMessageDeduplicationService.java  # Implementacion con base de datos
 ├── producer/
 │   ├── TopicExchangeProducer.java
 │   └── FanoutExchangeProducer.java

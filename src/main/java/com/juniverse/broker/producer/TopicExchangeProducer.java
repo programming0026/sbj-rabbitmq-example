@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Producer for Topic Exchange
+ * Productor del exchange topic
  *
- * Sends messages with specific routing keys that determine
- * which queues receive the message based on pattern matching.
+ * Envía mensajes con claves de enrutamiento que determinan
+ * qué colas reciben el mensaje según la coincidencia de patrones.
  */
 @Service
 @RequiredArgsConstructor
@@ -26,10 +26,10 @@ public class TopicExchangeProducer {
     private String topicExchange;
 
     /**
-     * Send message with a specific routing key
+     * Envía un mensaje con una clave de enrutamiento concreta
      *
-     * @param routingKey The routing key (e.g., "order.created", "system.error")
-     * @param message    The message to send
+     * @param routingKey clave de enrutamiento (por ejemplo «order.created», «system.error»)
+     * @param message    mensaje que se envía
      */
     public void sendMessage(String routingKey, EventMessage message) {
         log.info("Sending to Topic Exchange [{}] with routing key [{}]: {}",

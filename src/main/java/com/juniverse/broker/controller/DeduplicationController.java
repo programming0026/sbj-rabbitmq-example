@@ -17,7 +17,7 @@ import com.juniverse.broker.service.MessageDeduplicationService;
 import lombok.RequiredArgsConstructor;
 
 /**
- * REST Controller for monitoring and managing message deduplication.
+ * Controlador REST para monitorear y administrar la deduplicación de mensajes.
  */
 @RestController
 @RequestMapping("/api/deduplication")
@@ -28,7 +28,7 @@ public class DeduplicationController {
     private final ProcessedMessageRepository repository;
 
     /**
-     * Get statistics about processed messages
+     * Obtiene estadísticas de los mensajes procesados
      */
     @GetMapping("/stats")
     public ResponseEntity<Map<String, Object>> getStats() {
@@ -46,7 +46,7 @@ public class DeduplicationController {
     }
 
     /**
-     * Get all processed messages
+     * Obtiene todos los mensajes procesados
      */
     @GetMapping("/messages")
     public ResponseEntity<?> getAllProcessedMessages() {
@@ -54,7 +54,7 @@ public class DeduplicationController {
     }
 
     /**
-     * Get processed messages for a specific queue
+     * Obtiene los mensajes procesados de una cola
      */
     @GetMapping("/messages/{queueName}")
     public ResponseEntity<?> getMessagesByQueue(@PathVariable String queueName) {
@@ -62,7 +62,7 @@ public class DeduplicationController {
     }
 
     /**
-     * Check if a specific message ID was processed
+     * Comprueba si un identificador de mensaje ya se procesó
      */
     @GetMapping("/check/{messageId}")
     public ResponseEntity<Map<String, Object>> checkMessage(@PathVariable String messageId) {
@@ -74,7 +74,7 @@ public class DeduplicationController {
     }
 
     /**
-     * Allow reprocessing of a specific message
+     * Permite reprocesar un mensaje concreto
      */
     @DeleteMapping("/messages/{messageId}")
     public ResponseEntity<String> allowReprocess(@PathVariable String messageId) {
@@ -83,7 +83,7 @@ public class DeduplicationController {
     }
 
     /**
-     * Manual cleanup of old messages
+     * Limpieza manual de mensajes antiguos
      */
     @DeleteMapping("/cleanup")
     public ResponseEntity<Map<String, Object>> cleanup(@RequestParam(defaultValue = "7") int days) {

@@ -16,16 +16,16 @@ import com.juniverse.broker.producer.TopicExchangeProducer;
 import lombok.RequiredArgsConstructor;
 
 /**
- * REST Controller for testing Topic Exchange
+ * Controlador REST para probar el exchange topic
  *
- * Topic Exchange routes messages based on routing key patterns:
- * - '*' matches exactly one word
- * - '#' matches zero or more words
+ * El exchange topic enruta los mensajes según patrones de la clave de enrutamiento:
+ * - '*' coincide con exactamente una palabra
+ * - '#' coincide con cero o más palabras
  *
- * Test endpoints:
- * POST /api/topic/send/{routingKey}  - Send with custom routing key
- * POST /api/topic/order/created      - Matches "order.*" queue
- * POST /api/topic/system/error       - Matches "*.error" queue
+ * Endpoints de prueba:
+ * POST /api/topic/send/{routingKey}  - Envía con una clave de enrutamiento propia
+ * POST /api/topic/order/created      - Coincide con la cola "order.*"
+ * POST /api/topic/system/error       - Coincide con la cola "*.error"
  */
 @RestController
 @RequestMapping("/api/topic")
@@ -35,8 +35,8 @@ public class TopicExchangeController {
     private final TopicExchangeProducer topicProducer;
 
     /**
-     * Send message with custom routing key
-     * Example: POST /api/topic/send/order.created
+     * Envía un mensaje con una clave de enrutamiento propia
+     * Ejemplo: POST /api/topic/send/order.created
      */
     @PostMapping("/send/{routingKey}")
     public ResponseEntity<String> sendWithRoutingKey(
@@ -61,8 +61,8 @@ public class TopicExchangeController {
     }
 
     /**
-     * Send order.created event
-     * Will be received by: ordersQueue (order.*) and allEventsQueue (#)
+     * Envía evento de creación de orden.
+     * Lo recibirán: ordersQueue (order.*) y allEventsQueue (#)
      */
     @PostMapping("/order/created")
     public ResponseEntity<String> sendOrderCreated(@RequestBody(required = false) String content) {
@@ -84,8 +84,8 @@ public class TopicExchangeController {
     }
 
     /**
-     * Send order.updated event
-     * Will be received by: ordersQueue (order.*) and allEventsQueue (#)
+     * Envía evento de actualización de orden.
+     * Lo recibirán: ordersQueue (order.*) y allEventsQueue (#)
      */
     @PostMapping("/order/updated")
     public ResponseEntity<String> sendOrderUpdated(@RequestBody(required = false) String content) {
@@ -107,8 +107,8 @@ public class TopicExchangeController {
     }
 
     /**
-     * Send system.error event
-     * Will be received by: errorsQueue (*.error) and allEventsQueue (#)
+     * Envía el evento system.error
+     * Lo recibirán: errorsQueue (*.error) y allEventsQueue (#)
      */
     @PostMapping("/system/error")
     public ResponseEntity<String> sendSystemError(@RequestBody(required = false) String content) {
@@ -130,8 +130,8 @@ public class TopicExchangeController {
     }
 
     /**
-     * Send payment.error event
-     * Will be received by: errorsQueue (*.error) and allEventsQueue (#)
+     * Envía el evento payment.error
+     * Lo recibirán: errorsQueue (*.error) y allEventsQueue (#)
      */
     @PostMapping("/payment/error")
     public ResponseEntity<String> sendPaymentError(@RequestBody(required = false) String content) {
@@ -153,9 +153,9 @@ public class TopicExchangeController {
     }
 
     /**
-     * Send user.registered event
-     * Will ONLY be received by: allEventsQueue (#)
-     * Does NOT match order.* or *.error patterns
+     * Envía el evento user.registered
+     * Solo lo recibirá: allEventsQueue (#)
+     * NO coincide con los patrones order.* ni *.error
      */
     @PostMapping("/user/registered")
     public ResponseEntity<String> sendUserRegistered(@RequestBody(required = false) String content) {

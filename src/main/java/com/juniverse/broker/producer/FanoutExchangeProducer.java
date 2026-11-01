@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Producer for Fanout Exchange
+ * Productor del exchange fanout
  *
- * Broadcasts messages to ALL bound queues.
- * The routing key is ignored - every queue receives the message.
+ * Difunde los mensajes a TODAS las colas enlazadas.
+ * La clave de enrutamiento se ignora: todas las colas reciben el mensaje.
  */
 @Service
 @RequiredArgsConstructor
@@ -26,9 +26,9 @@ public class FanoutExchangeProducer {
     private String fanoutExchange;
 
     /**
-     * Broadcast message to all queues bound to the fanout exchange
+     * Difunde el mensaje a todas las colas enlazadas al exchange fanout
      *
-     * @param message The message to broadcast
+     * @param message mensaje que se difunde
      */
     public void broadcastMessage(EventMessage message) {
         log.info("Broadcasting to Fanout Exchange [{}]: {}", fanoutExchange, message);

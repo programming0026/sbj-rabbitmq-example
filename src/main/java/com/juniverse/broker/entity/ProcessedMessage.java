@@ -16,8 +16,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Entity to track processed messages for idempotency.
- * Prevents duplicate message processing in RabbitMQ consumers.
+ * Entidad que registra los mensajes procesados para garantizar la idempotencia.
+ * Evita procesar mensajes duplicados en los consumidores de RabbitMQ.
  */
 @Entity
 @Table(name = "processed_messages",

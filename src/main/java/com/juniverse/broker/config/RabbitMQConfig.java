@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * General RabbitMQ Configuration
- * Uses JacksonJsonMessageConverter (Spring AMQP 4.x with Jackson 3.x)
+ * Configuración general de RabbitMQ
+ * Usa JacksonJsonMessageConverter (Spring AMQP 4.x con Jackson 3.x)
  */
 @Configuration
 public class RabbitMQConfig {

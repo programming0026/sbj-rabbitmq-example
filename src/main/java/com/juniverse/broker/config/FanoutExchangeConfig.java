@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Fanout Exchange Configuration
+ * Configuración del exchange fanout
  *
- * Fanout Exchange broadcasts messages to ALL bound queues.
- * The routing key is IGNORED - all queues receive the message.
+ * El exchange fanout difunde los mensajes a TODAS las colas enlazadas.
+ * La clave de enrutamiento se IGNORA: todas las colas reciben el mensaje.
  *
- * Use cases:
- * - Broadcasting notifications to multiple services
- * - Sending updates to all subscribers
- * - Event distribution where all consumers need the same data
+ * Casos de uso:
+ * - Difundir notificaciones a varios servicios
+ * - Enviar actualizaciones a todos los suscriptores
+ * - Distribución de eventos donde todos los consumidores necesitan los mismos datos
  */
 @Configuration
 public class FanoutExchangeConfig {

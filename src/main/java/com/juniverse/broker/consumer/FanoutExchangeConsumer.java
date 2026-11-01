@@ -10,15 +10,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Consumer for Fanout Exchange with Idempotent Processing.
+ * Consumidor del exchange fanout con procesamiento idempotente.
  *
- * Each subscriber (queue) independently tracks processed messages.
- * The SAME message ID will be processed once per queue.
+ * Cada suscriptor (cola) registra por separado los mensajes procesados.
+ * El MISMO identificador de mensaje se procesará una vez por cola.
  *
- * This is correct behavior for fanout:
- * - Message "ABC" arrives at all 3 queues
- * - Each queue processes "ABC" exactly ONCE
- * - Retries/duplicates within each queue are prevented
+ * Este es el comportamiento correcto en un fanout:
+ * - El mensaje «ABC» llega a las 3 colas
+ * - Cada cola procesa «ABC» exactamente UNA vez
+ * - Se evitan los reintentos y duplicados dentro de cada cola
  */
 @Service
 @RequiredArgsConstructor
@@ -32,7 +32,7 @@ public class FanoutExchangeConsumer {
     private static final String NOTIFICATION_QUEUE_3 = "fanout.queue.notification3";
 
     /**
-     * Subscriber 1 - Email Notification Service
+     * Suscriptor 1: servicio de notificación por correo
      */
     @RabbitListener(queues = "${rabbitmq.fanout.queue.notification1}")
     public void emailNotificationHandler(EventMessage message) {
@@ -56,7 +56,7 @@ public class FanoutExchangeConsumer {
     }
 
     /**
-     * Subscriber 2 - SMS Notification Service
+     * Suscriptor 2: servicio de notificación por SMS
      */
     @RabbitListener(queues = "${rabbitmq.fanout.queue.notification2}")
     public void smsNotificationHandler(EventMessage message) {
@@ -80,7 +80,7 @@ public class FanoutExchangeConsumer {
     }
 
     /**
-     * Subscriber 3 - Push Notification Service
+     * Suscriptor 3: servicio de notificación push
      */
     @RabbitListener(queues = "${rabbitmq.fanout.queue.notification3}")
     public void pushNotificationHandler(EventMessage message) {

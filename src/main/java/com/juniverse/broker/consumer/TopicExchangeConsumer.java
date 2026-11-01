@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Consumer for Topic Exchange with Idempotent Processing.
+ * Consumidor del exchange topic con procesamiento idempotente.
  *
- * Uses MessageDeduplicationService to prevent duplicate message processing.
- * Each queue tracks its own processed messages independently.
+ * Usa MessageDeduplicationService para evitar procesar mensajes duplicados.
+ * Cada cola lleva su propio registro de mensajes procesados.
  */
 @Service
 @RequiredArgsConstructor
@@ -27,8 +27,8 @@ public class TopicExchangeConsumer {
     private static final String ALL_QUEUE = "topic.queue.all";
 
     /**
-     * Listens to orders queue - receives "order.*" messages
-     * Examples: order.created, order.updated, order.deleted
+     * Escucha la cola de pedidos: recibe los mensajes "order.*"
+     * Ejemplos: order.created, order.updated, order.deleted
      */
     @RabbitListener(queues = "${rabbitmq.topic.queue.orders}")
     public void handleOrderEvents(EventMessage message) {
@@ -54,8 +54,8 @@ public class TopicExchangeConsumer {
     }
 
     /**
-     * Listens to errors queue - receives "*.error" messages
-     * Examples: system.error, payment.error, order.error
+     * Escucha la cola de errores: recibe los mensajes "*.error"
+     * Ejemplos: system.error, payment.error, order.error
      */
     @RabbitListener(queues = "${rabbitmq.topic.queue.errors}")
     public void handleErrorEvents(EventMessage message) {
@@ -82,7 +82,7 @@ public class TopicExchangeConsumer {
     }
 
     /**
-     * Listens to all events queue - receives ALL messages ("#" catch-all)
+     * Escucha la cola de todos los eventos: recibe TODOS los mensajes ("#" comodín)
      */
     @RabbitListener(queues = "${rabbitmq.topic.queue.all}")
     public void handleAllEvents(EventMessage message) {

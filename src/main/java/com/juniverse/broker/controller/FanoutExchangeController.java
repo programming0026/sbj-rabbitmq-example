@@ -15,12 +15,12 @@ import com.juniverse.broker.producer.FanoutExchangeProducer;
 import lombok.RequiredArgsConstructor;
 
 /**
- * REST Controller for testing Fanout Exchange
+ * Controlador REST para probar el exchange fanout
  *
- * Fanout Exchange broadcasts messages to ALL bound queues.
- * The routing key is completely IGNORED.
+ * El exchange fanout difunde los mensajes a TODAS las colas enlazadas.
+ * La clave de enrutamiento se IGNORA por completo.
  *
- * All 3 notification services will receive every message:
+ * Los 3 servicios de notificación recibirán cada mensaje:
  * - Email Notification Service (queue 1)
  * - SMS Notification Service (queue 2)
  * - Push Notification Service (queue 3)
@@ -33,8 +33,8 @@ public class FanoutExchangeController {
     private final FanoutExchangeProducer fanoutProducer;
 
     /**
-     * Broadcast a notification to ALL subscribers
-     * All 3 queues will receive this message simultaneously
+     * Difunde una notificación a TODOS los suscriptores
+     * Las 3 colas recibirán este mensaje al mismo tiempo
      */
     @PostMapping("/broadcast")
     public ResponseEntity<String> broadcastNotification(@RequestBody(required = false) String content) {
@@ -58,7 +58,7 @@ public class FanoutExchangeController {
     }
 
     /**
-     * Broadcast a system alert
+     * Difunde una alerta del sistema
      */
     @PostMapping("/alert")
     public ResponseEntity<String> broadcastAlert(@RequestBody(required = false) String content) {
@@ -76,7 +76,7 @@ public class FanoutExchangeController {
     }
 
     /**
-     * Broadcast a promotional message
+     * Difunde un mensaje promocional
      */
     @PostMapping("/promo")
     public ResponseEntity<String> broadcastPromo(@RequestBody(required = false) String content) {

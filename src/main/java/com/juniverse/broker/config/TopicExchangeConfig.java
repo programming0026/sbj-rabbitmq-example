@@ -9,16 +9,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Topic Exchange Configuration
+ * Configuración del exchange topic
  *
- * Topic Exchange routes messages based on routing key patterns:
- * - '*' matches exactly one word
- * - '#' matches zero or more words
+ * El exchange topic enruta los mensajes según patrones de la clave de enrutamiento:
+ * - '*' coincide con exactamente una palabra
+ * - '#' coincide con cero o más palabras
  *
- * Example routing keys:
- * - order.created -> matches "order.*" and "order.#"
- * - order.payment.completed -> matches "order.#" but NOT "order.*"
- * - system.error -> matches "*.error" and "#.error"
+ * Ejemplos de claves de enrutamiento:
+ * - order.created -> coincide con «order.*» y «order.#»
+ * - order.payment.completed -> coincide con «order.#» pero NO con «order.*»
+ * - system.error -> coincide con «*.error» y «#.error»
  */
 @Configuration
 public class TopicExchangeConfig {
@@ -61,9 +61,9 @@ public class TopicExchangeConfig {
 
 
     /**
-     * Binding: ordersQueue <- "order.*"
-     * Matches: order.created, order.updated, order.deleted
-     * Does NOT match: order.payment.completed (more than one word after "order.")
+     * Enlace: ordersQueue <- "order.*"
+     * Coincide: order.created, order.updated, order.deleted
+     * NO coincide: order.payment.completed (más de una palabra después de «order.»)
      */
     @Bean
     public Binding ordersBinding(Queue ordersQueue, TopicExchange topicExchange) {
@@ -71,9 +71,9 @@ public class TopicExchangeConfig {
     }
 
     /**
-     * Binding: errorsQueue <- "*.error"
-     * Matches: system.error, payment.error, order.error
-     * Does NOT match: system.critical.error (more than one word before ".error")
+     * Enlace: errorsQueue <- "*.error"
+     * Coincide: system.error, payment.error, order.error
+     * NO coincide: system.critical.error (más de una palabra antes de «.error»)
      */
     @Bean
     public Binding errorsBinding(Queue errorsQueue, TopicExchange topicExchange) {
@@ -81,8 +81,8 @@ public class TopicExchangeConfig {
     }
 
     /**
-     * Binding: allEventsQueue <- "#"
-     * Matches ALL routing keys (catch-all pattern)
+     * Enlace: allEventsQueue <- "#"
+     * Coincide con TODAS las claves de enrutamiento (patrón comodín)
      */
     @Bean
     public Binding allEventsBinding(Queue allEventsQueue, TopicExchange topicExchange) {
