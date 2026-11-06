@@ -18,7 +18,11 @@
 		<license/>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<id>programming0026</id>
+			<name>Java Universe</name>
+			<url>https://github.com/programming0026</url>
+		</developer>
 	</developers>
 	<scm>
 		<connection/>
